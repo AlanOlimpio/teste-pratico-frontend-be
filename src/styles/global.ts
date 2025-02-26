@@ -10,7 +10,14 @@ ${({ theme }) => css`
 
   :focus {
     outline: 0;
-    box-shadow: 0 0 0 2px ${theme.color["gray-20"]};
+    box-shadow: 0 0px 0px 1px rgba(0, 0, 0, 0.25);
+    transition: 0.3s;
+  }
+
+  input:focus {
+    outline: 0;
+    box-shadow: 0 4px 4px 0px rgba(0, 0, 0, 0.25);
+    transition: 0.3s;
   }
 
   body {
