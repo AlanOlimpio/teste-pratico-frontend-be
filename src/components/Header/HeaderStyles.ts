@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { css } from "styled-components";
+import { device } from "../../styles/global";
 
 export const HeaderContainer = styled.header`
   ${({ theme }) => css`
@@ -10,6 +11,8 @@ export const HeaderContainer = styled.header`
     width: 100%;
     display: block;
     margin: 0 auto;
+     @media ${device.tablet} {
+         padding: calc(${theme.spacing.xs} - 1.387px) ${theme.spacing.sm};
   `}
 `;
 
