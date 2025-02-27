@@ -8,6 +8,7 @@ export const HeaderContainer = styled.header`
     padding: calc(${theme.spacing.xs} - 1.387px) ${theme.spacing.xl};
     box-shadow: 0 4px 4px 0px rgba(0, 0, 0, 0.25);
     position: fixed;
+    z-index: 1;
     width: 100%;
     display: block;
     margin: 0 auto;

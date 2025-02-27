@@ -17,6 +17,7 @@ export const SearchFormContainer = styled.form`
       padding: calc(${theme.spacing.xs} - 1.5px)
         calc(${theme.spacing.xxxl} + 8px) calc(${theme.spacing.xs} - 1.5px)
         calc(${theme.spacing.xs} - 1.5px);
+      box-shadow: 0 4px 4px 0px rgba(0, 0, 0, 0.25);
       width: 100%;
 
       &::placeholder {
@@ -43,8 +44,8 @@ export const SearchFormContainer = styled.form`
       }
       &:not(:disabled):hover,
       &:not(:disabled):focus {
-        background: ${theme.color["gray-20"]};
-        border: 1px solid ${theme.color["gray-20"]};
+        background: ${theme.color.primary};
+        border: 1px solid ${theme.color.primary};
         svg path {
           fill: ${theme.color.white};
         }

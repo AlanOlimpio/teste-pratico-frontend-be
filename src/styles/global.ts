@@ -16,7 +16,7 @@ ${({ theme }) => css`
 
   input:focus {
     outline: 0;
-    box-shadow: 0 4px 4px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 0px 0px 1px ${theme.color.primary}!important;
     transition: 0.3s;
   }
 

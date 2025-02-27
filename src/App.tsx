@@ -4,6 +4,7 @@ import { defaultTheme } from "./styles/themes/default";
 import { GlobalStyle } from "./styles/global";
 import Header from "./components/Header";
 import TitlePage from "./components/TitlePage";
+import EmployeesListDesktop from "./components/EmployeesListDesktop";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <GlobalStyle />
       <Header />
       <TitlePage />
+      <EmployeesListDesktop />
     </ThemeProvider>
   );
 }
