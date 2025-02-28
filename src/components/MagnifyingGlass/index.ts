@@ -1,2 +1,2 @@
-import Header from './Header';
-export default Header;
+import MagnifyingGlass from "./MagnifyingGlass";
+export default MagnifyingGlass;

@@ -3,7 +3,7 @@ import * as z from "zod";
 import { SearchFormContainer } from "./SearchFormStyles";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import MagnifyingGlass from "../MagnifyingGlass/MagnifyingGlass";
+import MagnifyingGlass from "../MagnifyingGlass";
 
 const searchFormSchema = z.object({
   query: z.string(),
