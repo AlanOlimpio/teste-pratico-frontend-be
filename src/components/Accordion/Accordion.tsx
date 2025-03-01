@@ -1,5 +1,5 @@
 import Chevron from "./Chevron";
-import { EmployeesProps } from "../interfaces/Employees";
+import { EmployeesProps } from "../../interfaces/Employees";
 import {
   AccordionWrapper,
   WrapperContentAccordion,
