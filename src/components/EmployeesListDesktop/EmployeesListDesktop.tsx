@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import {
   EmployeesListContainer,
   EmployeesListContent,
@@ -8,8 +9,11 @@ import {
   ListTr,
   ListTrH,
 } from "./EmployeesListDesktopStyles";
+import { EmployeesContext } from "../../contexts/EmployeesContexts";
+import { dateFormatter, phoneFormatter } from "../../utils/formatter";
 
 function EmployeesListDesktop() {
+  const { employees } = useContext(EmployeesContext);
   return (
     <EmployeesListContainer>
       <EmployeesListContent>
@@ -24,18 +28,17 @@ function EmployeesListDesktop() {
             </ListTrH>
           </thead>
           <tbody>
-            {Array.from({ length: 10 }).map((_, i) => (
-              <ListTr key={i}>
+            {employees.map((employee) => (
+              <ListTr key={employee.id}>
                 <ListTd>
-                  <Image
-                    src="https://img.favpng.com/25/7/23/computer-icons-user-profile-avatar-image-png-favpng-LFqDyLRhe3PBXM0sx2LufsGFU.jpg"
-                    alt=""
-                  />
+                  <Image src={employee.image} alt="" />
                 </ListTd>
-                <ListTd>Giovana L. Arruda</ListTd>
-                <ListTd>Front-end</ListTd>
-                <ListTd>00/00/0000</ListTd>
-                <ListTd>+55 (55) 55555-555</ListTd>
+                <ListTd>{employee.name}</ListTd>
+                <ListTd>{employee.job}</ListTd>
+                <ListTd>
+                  {dateFormatter.format(new Date(employee.admission_date))}
+                </ListTd>
+                <ListTd>{phoneFormatter(employee.phone)}</ListTd>
               </ListTr>
             ))}
           </tbody>

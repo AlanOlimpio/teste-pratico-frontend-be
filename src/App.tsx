@@ -7,15 +7,18 @@ import TitlePage from "./components/TitlePage";
 import EmployeesListDesktop from "./components/EmployeesListDesktop";
 import { useMediaQuery } from "./hooks/useMediaQuery";
 import EmployeesListMobile from "./components/EmployeesListMobile";
+import { EmployeesProvider } from "./contexts/EmployeesContexts";
 
 function App() {
   const isMobile = useMediaQuery(device.tablet);
   return (
     <ThemeProvider theme={defaultTheme}>
       <GlobalStyle />
-      <Header />
-      <TitlePage />
-      {isMobile ? <EmployeesListMobile /> : <EmployeesListDesktop />}
+      <EmployeesProvider>
+        <Header />
+        <TitlePage />
+        {isMobile ? <EmployeesListMobile /> : <EmployeesListDesktop />}
+      </EmployeesProvider>
     </ThemeProvider>
   );
 }

@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import Accordion from "../Accordion";
 import {
   Circle,
@@ -5,8 +6,11 @@ import {
   WrapperInfo,
   WrapperListHeaderMobile,
 } from "./EmployeesListMobileStyles";
+import { EmployeesContext } from "../../contexts/EmployeesContexts";
+import { dateFormatter, phoneFormatter } from "../../utils/formatter";
 
 function EmployeesListMobile() {
+  const { employees } = useContext(EmployeesContext);
   return (
     <EmployeesListContainer>
       <WrapperListHeaderMobile>
@@ -18,14 +22,21 @@ function EmployeesListMobile() {
           <span />
         </Circle>
       </WrapperListHeaderMobile>
-      <Accordion
-        phone="+55 (55) 55555-555"
-        admission_date="00/00/0000"
-        id="3423412"
-        image="https://img.favpng.com/25/7/23/computer-icons-user-profile-avatar-image-png-favpng-LFqDyLRhe3PBXM0sx2LufsGFU.jpg"
-        job="Front-end"
-        name="Giovana L. Arruda"
-      />
+      {employees.map((employee) => {
+        return (
+          <Accordion
+            key={employee.id}
+            phone={phoneFormatter(employee.phone)}
+            admission_date={dateFormatter.format(
+              new Date(employee.admission_date)
+            )}
+            id={employee.id}
+            image={employee.image}
+            job={employee.job}
+            name={employee.name}
+          />
+        );
+      })}
     </EmployeesListContainer>
   );
 }
