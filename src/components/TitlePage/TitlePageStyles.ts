@@ -31,7 +31,7 @@ export const TitlePageContent = styled.div`
       flex-direction: column;
       justify-content: flex-start;
       align-items: flex-start;
-      padding: ${theme.spacing.md} 0px;
+      padding: ${theme.spacing.md} 0px ${theme.spacing.sm};
     }
   `}
 `;
