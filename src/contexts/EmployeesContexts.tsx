@@ -4,6 +4,7 @@ import { getEmployees } from "../Services/employees";
 
 interface EmployeesContextType {
   employees: EmployeesProps[];
+  fetchEmployees: (query?: string) => Promise<void>;
 }
 
 interface EmployeesProviderProps {
@@ -14,17 +15,17 @@ export const EmployeesContext = createContext({} as EmployeesContextType);
 export function EmployeesProvider({ children }: EmployeesProviderProps) {
   const [employees, setEmployees] = useState<EmployeesProps[]>([]);
 
-  async function loadEmployees() {
-    const response = await getEmployees();
+  async function fetchEmployees(query?: string) {
+    const response = await getEmployees(query);
     const data = await response.json();
     setEmployees(data);
   }
 
   useEffect(() => {
-    loadEmployees();
+    fetchEmployees();
   }, []);
   return (
-    <EmployeesContext.Provider value={{ employees: employees }}>
+    <EmployeesContext.Provider value={{ employees, fetchEmployees }}>
       {children}
     </EmployeesContext.Provider>
   );

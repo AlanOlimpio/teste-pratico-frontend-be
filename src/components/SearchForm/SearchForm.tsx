@@ -4,6 +4,8 @@ import { SearchFormContainer } from "./SearchFormStyles";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import MagnifyingGlass from "../MagnifyingGlass";
+import { useContext } from "react";
+import { EmployeesContext } from "../../contexts/EmployeesContexts";
 
 const searchFormSchema = z.object({
   query: z.string(),
@@ -12,6 +14,7 @@ const searchFormSchema = z.object({
 type SearchFormInputs = z.infer<typeof searchFormSchema>;
 
 function SearchForm() {
+  const { fetchEmployees } = useContext(EmployeesContext);
   const {
     register,
     handleSubmit,
@@ -20,8 +23,8 @@ function SearchForm() {
     resolver: zodResolver(searchFormSchema),
   });
 
-  function handleSearch(data: SearchFormInputs) {
-    console.log(data);
+  async function handleSearch(data: SearchFormInputs) {
+    await fetchEmployees(data.query);
   }
 
   return (
