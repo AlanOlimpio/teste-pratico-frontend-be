@@ -1,8 +1,9 @@
-export function getEmployees(query?: string) {
-  const url = new URL("http://localhost:3000/employees");
+import { api } from "../lib/axios";
 
-  if (query) {
-    url.searchParams.append("q", query);
-  }
-  return fetch(url);
+export function getEmployees(query?: string) {
+  return api.get("employees", {
+    params: {
+      q: query,
+    },
+  });
 }

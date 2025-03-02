@@ -17,8 +17,8 @@ export function EmployeesProvider({ children }: EmployeesProviderProps) {
 
   async function fetchEmployees(query?: string) {
     const response = await getEmployees(query);
-    const data = await response.json();
-    setEmployees(data);
+
+    setEmployees(response.data);
   }
 
   useEffect(() => {
