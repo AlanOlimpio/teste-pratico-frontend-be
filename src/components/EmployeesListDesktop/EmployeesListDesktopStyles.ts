@@ -42,6 +42,7 @@ export const EmployeesTable = styled.table`
   width: 100%;
   border-collapse: separate;
   border-spacing: 0 1px;
+  table-layout: fixed;
 `;
 
 export const ListTh = styled.th`
@@ -57,12 +58,18 @@ export const ListTh = styled.th`
       border-bottom-left-radius: 0px;
       padding: ${theme.spacing.xs} ${theme.spacing.xxs} ${theme.spacing.xs}
         ${theme.spacing.xl};
+      width: 120px;
     }
+    &:nth-child(1) {
+      width: 156px;
+    }
+
     &:last-child {
       border-top-right-radius: 8px;
       border-bottom-right-radius: 0px;
       padding: ${theme.spacing.xs} ${theme.spacing.xl} ${theme.spacing.xs}
         ${theme.spacing.xxs};
+      width: 200px;
     }
   `}
 `;
