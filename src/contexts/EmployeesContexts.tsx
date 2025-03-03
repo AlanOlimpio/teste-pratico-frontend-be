@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
 import { EmployeesProps } from "../interfaces/Employees";
-import { getEmployees } from "../Services/employees";
+import { getEmployees } from "../services/employees";
 import { useSearchParams } from "react-router-dom";
 
 interface EmployeesContextType {
