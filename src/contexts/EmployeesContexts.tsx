@@ -6,6 +6,7 @@ import { useSearchParams } from "react-router-dom";
 interface EmployeesContextType {
   employees: EmployeesProps[];
   fetchEmployees: (query?: string) => Promise<void>;
+  isLoading: boolean;
 }
 
 interface EmployeesProviderProps {
@@ -21,8 +22,9 @@ export function EmployeesProvider({ children }: EmployeesProviderProps) {
   const [employees, setEmployees] = useState<EmployeesProps[]>([]);
   const [searchParams] = useSearchParams();
   const querySearch = searchParams.get("q") ? searchParams.get("q") : undefined;
-
+  const [isLoading, setIsLoading] = useState(false);
   async function fetchEmployees() {
+    setIsLoading(true);
     let urlParams: urlParamsProps = {};
 
     if (querySearch) {
@@ -33,6 +35,7 @@ export function EmployeesProvider({ children }: EmployeesProviderProps) {
     }
 
     const response = await getEmployees(urlParams);
+    setIsLoading(false);
 
     setEmployees(response.data);
   }
@@ -42,7 +45,7 @@ export function EmployeesProvider({ children }: EmployeesProviderProps) {
   }, [querySearch]);
 
   return (
-    <EmployeesContext.Provider value={{ employees, fetchEmployees }}>
+    <EmployeesContext.Provider value={{ employees, fetchEmployees, isLoading }}>
       {children}
     </EmployeesContext.Provider>
   );
