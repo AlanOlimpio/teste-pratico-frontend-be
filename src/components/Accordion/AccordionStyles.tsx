@@ -93,7 +93,7 @@ export const Container = styled.div`
 export const Wrapperbutton = styled.span`
   ${({ theme }) => css`
     display: flex;
-    gap: ${theme.spacing.md};
+    gap: ${theme.spacing.xl};
     align-items: center;
   `}
 `;

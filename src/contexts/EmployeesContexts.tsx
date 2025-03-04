@@ -7,6 +7,7 @@ interface EmployeesContextType {
   employees: EmployeesProps[];
   fetchEmployees: (query?: string) => Promise<void>;
   isLoading: boolean;
+  isError: boolean;
 }
 
 interface EmployeesProviderProps {
@@ -22,9 +23,9 @@ export function EmployeesProvider({ children }: EmployeesProviderProps) {
   const [employees, setEmployees] = useState<EmployeesProps[]>([]);
   const [searchParams] = useSearchParams();
   const querySearch = searchParams.get("q") ? searchParams.get("q") : undefined;
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsErrors] = useState(false);
   async function fetchEmployees() {
-    setIsLoading(true);
     let urlParams: urlParamsProps = {};
 
     if (querySearch) {
@@ -34,10 +35,16 @@ export function EmployeesProvider({ children }: EmployeesProviderProps) {
       };
     }
 
-    const response = await getEmployees(urlParams);
-    setIsLoading(false);
-
-    setEmployees(response.data);
+    try {
+      setIsLoading(true);
+      const response = await getEmployees(urlParams);
+      setEmployees(response.data);
+      setIsLoading(false);
+    } catch (e) {
+      setIsLoading(false);
+      setIsErrors(true);
+      console.log(e);
+    }
   }
 
   useEffect(() => {
@@ -45,7 +52,9 @@ export function EmployeesProvider({ children }: EmployeesProviderProps) {
   }, [querySearch]);
 
   return (
-    <EmployeesContext.Provider value={{ employees, fetchEmployees, isLoading }}>
+    <EmployeesContext.Provider
+      value={{ employees, fetchEmployees, isLoading, isError }}
+    >
       {children}
     </EmployeesContext.Provider>
   );

@@ -14,6 +14,7 @@ import { dateFormatter, phoneFormatter } from "../../utils/formatter";
 
 function EmployeesListDesktop() {
   const { employees } = useContext(EmployeesContext);
+
   return (
     <EmployeesListContainer>
       <EmployeesListContent>
